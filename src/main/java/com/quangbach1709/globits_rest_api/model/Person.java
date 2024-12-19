@@ -31,10 +31,15 @@ public class Person {
     @JsonIgnore
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonIgnore
+    private Company company;
+
     public Person() {
     }
 
-    public Person(Long id, String fullName, String gender, LocalDate birthdate, String phoneNumber, String address, User user) {
+    public Person(Long id, String fullName, String gender, LocalDate birthdate, String phoneNumber, String address, User user, Company company) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -42,6 +47,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.user = user;
+        this.company = company;
     }
 
     public Long getId() {
@@ -98,5 +104,13 @@ public class Person {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

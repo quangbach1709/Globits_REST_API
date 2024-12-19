@@ -12,16 +12,21 @@ public class PersonDTO {
     private String phoneNumber;
     private String address;
 
+    private Long companyId;
+    private String companyName;
+
     public PersonDTO() {
     }
 
-    public PersonDTO(Long id, String fullName, String gender, LocalDate birthdate, String phoneNumber, String address) {
+    public PersonDTO(Long id, String fullName, String gender, LocalDate birthdate, String phoneNumber, String address, Long companyId, String companyName) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
         this.birthdate = birthdate;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.companyId = companyId;
+        this.companyName = companyName;
     }
 
     public Long getId() {
@@ -70,5 +75,21 @@ public class PersonDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }
