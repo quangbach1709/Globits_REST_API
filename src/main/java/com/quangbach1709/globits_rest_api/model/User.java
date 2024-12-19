@@ -1,45 +1,43 @@
 package com.quangbach1709.globits_rest_api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(unique = true, name = "email")
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active")
-    private Boolean is_active;
+    @Column(name = "is_active", nullable = false)
+    private final boolean isActive = true;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL) //dung de tao ra 1 quan he 1-1 giua 2 bang user va person
+    @JoinColumn(name = "person_id", referencedColumnName = "id")//dung de chi ra khoa ngoai cua bang user
     private Person person;
 
     public User() {
     }
 
 
-    public User(int id, String email, String password, Boolean is_active, Person person) {
+    public User(Long id, String email, String password, Person person) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.is_active = is_active;
         this.person = person;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,12 +57,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getIs_active() {
-        return is_active;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setIs_active(Boolean is_active) {
-        this.is_active = is_active;
+    public boolean setActive(boolean isActive) {
+        return isActive;
     }
 
     public Person getPerson() {
